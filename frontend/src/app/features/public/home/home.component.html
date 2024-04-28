@@ -1,0 +1,39 @@
+<div class="container">
+  <div class="my-5">
+    <div class="row align-items-strech">
+      <ng-container *ngIf="blogs$ | async as blogs; else loader">
+        <div class="col-12 col-md-4 mb-3" *ngFor="let blog of blogs">
+          <div class="card h-100">
+            <img
+              class="card-img-top"
+              [src]="blog.featuredImageUrl"
+              [alt]="blog.title"
+            />
+            <div class="card-body d-flex flex-column">
+              <h5 class="card-title">
+                {{ blog.title }}
+              </h5>
+              <p class="card-text">{{ blog.shortDescription }}</p>
+              <span class="d-flex align-items-end" style="flex: 1">
+                <a
+                  [routerLink]="['/blog', blog.urlHandle]"
+                  class="btn btn-primary"
+                  >Read More</a
+                ></span
+              >
+            </div>
+          </div>
+        </div>
+      </ng-container>
+    </div>
+  </div>
+</div>
+
+<!-- Spinner -->
+<ng-template #loader>
+  <div class="text-center mt-5">
+    <div class="spinner-border text-primary" role="status">
+      <span class="visually-hidden">Loading...</span>
+    </div>
+  </div>
+</ng-template>
